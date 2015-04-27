@@ -29,6 +29,26 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         return Static.instance
     }
     
+    func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
+        loginCompletion = completion
+        
+        requestSerializer.removeAccessToken() // Clear the current access token when relogging in
+        fetchRequestTokenWithPath("oauth/request_token", method: "GET", callbackURL: NSURL(string: "svitwitterdemoexample://oauth")!, scope: nil, success: { (requestToken:BDBOAuth1Credential!) -> Void in
+            
+            println("Got the request token")
+            var authURL = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")
+            // Use this to open another application through a URL
+            
+            // Open the Twitter URL so that we can go to the webpage to authenticate the application
+            UIApplication.sharedApplication().openURL(authURL!)
+            
+        }, failure: { (error:NSError!) -> Void in
+            
+            println("Failed to get the token")
+            self.loginCompletion?(user: nil, error: error)
+        })
+    }
+    
     func openUrl(url: NSURL) {
         
         fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential(queryString: url.query), success: { (accessToken:BDBOAuth1Credential!) -> Void in
