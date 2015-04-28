@@ -20,7 +20,12 @@ class TimelineViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+ 
+    // SignOut/Logout Action
+    @IBAction func onClickSignOut(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+        User.currentUser?.logout()
+    }   
 
     /*
     // MARK: - Navigation
