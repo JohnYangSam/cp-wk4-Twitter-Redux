@@ -15,11 +15,19 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Instance variables
     var tweets: [Tweet] = []
+    var refreshControl: UIRefreshControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Add UIRefreshControl as a subview of the UITableView - using the lowest index so that it appears behind everything
+        refreshControl = UIRefreshControl()
+        // 'onRefresh' will be the function called
+        refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+        
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.reloadData()
@@ -38,6 +46,18 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             }
         })
         
+    }
+    
+    func onRefresh() {
+        TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
+            if tweets != nil {
+                self.tweets = tweets!
+                self.tableView.reloadData()
+            } else {
+                // Handle the error here
+            }
+            self.refreshControl.endRefreshing()
+        })
     }
 
     override func didReceiveMemoryWarning() {

@@ -252,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="992" y="430"/>
         </scene>
-        <!--View Controller-->
+        <!--Tweet Detail View Controller-->
         <scene sceneID="hIM-91-krZ">
             <objects>
-                <viewController id="5II-vv-B4n" sceneMemberID="viewController">
+                <viewController id="5II-vv-B4n" customClass="TweetDetailViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aZA-Ao-0DF"/>
                         <viewControllerLayoutGuide type="bottom" id="5I2-sY-pgy"/>
@@ -402,8 +402,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZaK-Sa-FKr">
-                        <barButtonItem key="rightBarButtonItem" title="Reply" id="FxP-gn-sjv"/>
+                        <barButtonItem key="rightBarButtonItem" title="Reply" id="FxP-gn-sjv">
+                            <connections>
+                                <action selector="onReplyClick:" destination="5II-vv-B4n" id="OVc-w8-cCW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="ldi-0U-dwb" kind="push" identifier="composeTweetFromDetailSegue" id="a92-IW-RI9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rMv-bA-OQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -478,6 +485,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="mLU-Mr-QT9"/>
-        <segue reference="Hnm-Ce-zGc"/>
+        <segue reference="a92-IW-RI9"/>
     </inferredMetricsTieBreakers>
 </document>
