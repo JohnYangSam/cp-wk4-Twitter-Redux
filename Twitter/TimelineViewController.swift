@@ -170,10 +170,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         if segue.identifier == "composeSegue" {
-            
             // Set up the additional text
             var twc: TweetViewController = segue.destinationViewController as! TweetViewController
             twc.startingText = additionalText
+            additionalText = "" // reset the additional text
         }
     }
 

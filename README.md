@@ -28,6 +28,4 @@ Time spent: `~10hrs`
 
 ![Video Walkthrough](...)
 
-Sources:
-Retweet, Reply, and Star Icons borrowed from the [Noun
-Project](https://thenounproject.com)
+Notes: Retweet, Reply, and Star Icons borrowed from the [Noun Project](https://thenounproject.com)
