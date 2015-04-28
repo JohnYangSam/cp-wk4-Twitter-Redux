@@ -33,37 +33,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="dHI-OE-rVj" kind="modal" identifier="loginSegue" id="mpZ-X3-z4w"/>
+                        <segue destination="Wyt-Mn-Ssj" kind="modal" identifier="loginSegue" id="aaO-Zo-BTW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="154.66666666666666" y="430.73333333333335"/>
-        </scene>
-        <!--TimelineViewController-->
-        <scene sceneID="xP7-Xw-NuE">
-            <objects>
-                <viewController storyboardIdentifier="TimelineViewController" title="TimelineViewController" id="RBo-lx-Gxs" customClass="TimelineViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XxT-gG-DaP"/>
-                        <viewControllerLayoutGuide type="bottom" id="tJW-Xb-6Ty"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cbi-KV-n2S">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="uuG-ty-TH9">
-                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="grE-oL-xAu"/>
-                        <barButtonItem key="rightBarButtonItem" title="New" id="glE-YJ-G2e"/>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="dB3-ML-ZRc" kind="push" identifier="tweetDetailSegue" id="NQt-ee-KiY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OVe-ff-1rh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1398" y="430"/>
         </scene>
         <!--Tweet View Controller-->
         <scene sceneID="mwI-aK-LPJ">
@@ -84,24 +59,30 @@
             </objects>
             <point key="canvasLocation" x="1398" y="1260"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="dJB-hy-8Lo">
+        <!--Timeline View Controller-->
+        <scene sceneID="B53-LL-NGf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dHI-OE-rVj" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="0Zp-Ww-QTe"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dR3-vD-5Sw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController storyboardIdentifier="TimelineViewController" id="4ga-au-HvK" customClass="TimelineViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XIp-n9-D9q"/>
+                        <viewControllerLayoutGuide type="bottom" id="3L6-3B-Tju"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L91-r5-b9k">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uWg-bZ-QI2">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="Lmd-84-uZB"/>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="CRz-5q-M38"/>
+                    </navigationItem>
                     <connections>
-                        <segue destination="RBo-lx-Gxs" kind="relationship" relationship="rootViewController" id="dfj-pV-2Me"/>
+                        <segue destination="dB3-ML-ZRc" kind="push" identifier="tweetDetailSegue" id="AEr-CQ-J9C"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CpV-7v-uxU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PUP-C3-oBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="866" y="430"/>
+            <point key="canvasLocation" x="992" y="430"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NdS-Us-rWS">
@@ -121,6 +102,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wFE-BX-qhZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="866" y="1260"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YUx-qA-pGH">
+            <objects>
+                <navigationController storyboardIdentifier="TimelineNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Wyt-Mn-Ssj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EF3-Ac-x1q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4ga-au-HvK" kind="relationship" relationship="rootViewController" id="5wV-Fv-9dX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mn8-jk-QVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="554" y="430"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if User.currentUser != nil {
             println("Current user in the app is: \(User.currentUser?.name)")
-            
-            var vc = storyboard.instantiateViewControllerWithIdentifier("TimelineViewController") as! UIViewController
+            // Important see: http://stackoverflow.com/a/28520674/830367
+            var vc = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
             window?.rootViewController = vc
         }
         return true
