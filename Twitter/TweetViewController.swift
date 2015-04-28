@@ -21,6 +21,11 @@ class TweetViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onCancelClick(sender: AnyObject) {
+        println("Cancel clicked")
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
 
     /*
     // MARK: - Navigation

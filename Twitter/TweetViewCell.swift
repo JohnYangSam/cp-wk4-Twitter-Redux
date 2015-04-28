@@ -8,8 +8,23 @@
 
 import UIKit
 
-class TweetViewCell: UITableViewCell {
+// TODO Should a delegate be used for buttons?
+protocol TweetViewCellDelegate {
+}
 
+
+class TweetViewCell: UITableViewCell {
+    
+    // Outlets
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var hoursLabel: UILabel!
+    
+    // Tweet
+    var tweet: Tweet?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +35,22 @@ class TweetViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    // NOTE THAT THIS IS HIDDEN BECAUSE IT IS NOT FINISHED
+    
+    // Button Clicks
+    /*
+    @IBAction func onReplyClick(sender: AnyObject) {
+        // TODO: What is the best way to have these buttons open a new view controller. Is it a delegate?
+        
+    }
+    
+    @IBAction func onRetweetClick(sender: AnyObject) {
+        // To fill in
+    }
+    
+    @IBAction func onFavoriteClick(sender: AnyObject) {
+        // To fill in
+    }
+    */
 }

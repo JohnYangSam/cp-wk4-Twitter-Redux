@@ -81,8 +81,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wda-08-Dps">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Pqa-NX-0lZ"/>
-                        <barButtonItem key="rightBarButtonItem" title="Reply" id="YqH-eF-O0r"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Pqa-NX-0lZ">
+                            <connections>
+                                <action selector="onCancelClick:" destination="ldi-0U-dwb" id="ZCg-rP-fZD"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="YqH-eF-O0r"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sx1-Ie-FvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -105,7 +109,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="oIC-5a-BD7" customClass="TweetViewCell" customModule="Twitter" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetViewCell" rowHeight="115" id="oIC-5a-BD7" customClass="TweetViewCell" customModule="Twitter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oIC-5a-BD7" id="Unc-fx-8ig">
@@ -141,7 +145,7 @@
                                                     <color key="textColor" red="0.6316090593" green="0.6316090593" blue="0.6316090593" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIH-TT-bSh">
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIH-TT-bSh">
                                                     <rect key="frame" x="70" y="64" width="160" height="40"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPM-Cr-Ua0">
@@ -207,6 +211,13 @@
                                                 <constraint firstItem="br2-9e-DZl" firstAttribute="top" secondItem="Unc-fx-8ig" secondAttribute="top" constant="10" id="uWj-XL-f8J"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="hoursLabel" destination="2v9-b8-hAJ" id="lw4-6f-us7"/>
+                                            <outlet property="nameLabel" destination="0K8-3Q-G9b" id="hlT-rM-OA0"/>
+                                            <outlet property="profilePicture" destination="Zo3-eG-dwG" id="5s5-Vg-CN7"/>
+                                            <outlet property="screenNameLabel" destination="br2-9e-DZl" id="YvO-Vs-HT9"/>
+                                            <outlet property="tweetTextLabel" destination="AXg-P1-HcZ" id="9cM-av-lKh"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -225,11 +236,16 @@
                                 <action selector="onClickSignOut:" destination="4ga-au-HvK" id="F7J-w7-GiO"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="CRz-5q-M38"/>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="CRz-5q-M38">
+                            <connections>
+                                <action selector="onClickComposeTweet:" destination="4ga-au-HvK" id="E6c-UU-Ubk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="dB3-ML-ZRc" kind="push" identifier="tweetDetailSegue" id="AEr-CQ-J9C"/>
-                        <segue destination="05V-Ej-dYn" kind="push" identifier="composeSegue" id="vab-Uk-TXp"/>
+                        <outlet property="tableView" destination="Xin-nj-VL8" id="j6k-qt-wks"/>
+                        <segue destination="ldi-0U-dwb" kind="push" identifier="composeSegue" id="ytW-yS-qcn"/>
+                        <segue destination="5II-vv-B4n" kind="push" identifier="tweetDetailSegue" id="mLU-Mr-QT9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUP-C3-oBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -386,7 +402,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZaK-Sa-FKr">
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="FxP-gn-sjv"/>
+                        <barButtonItem key="rightBarButtonItem" title="Reply" id="FxP-gn-sjv"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rMv-bA-OQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -447,7 +463,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMn-sY-YDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1546" y="430"/>
+            <point key="canvasLocation" x="1534" y="102"/>
         </scene>
     </scenes>
     <resources>
@@ -460,4 +476,8 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="mLU-Mr-QT9"/>
+        <segue reference="Hnm-Ce-zGc"/>
+    </inferredMetricsTieBreakers>
 </document>
