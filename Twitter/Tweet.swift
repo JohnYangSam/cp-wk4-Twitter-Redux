@@ -20,8 +20,10 @@ class Tweet: NSObject {
     init(dictionary: NSDictionary) {
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         text = dictionary["text"] as? String
-        favoriteCount = dictionary["favorite_count"] as? String
-        retweetCount = dictionary["retweet_count"] as? String
+        let fi = dictionary["favorite_count"] as? Int
+        let ri = dictionary["retweet_count"] as? Int
+        favoriteCount = String(fi!)
+        retweetCount = String(ri!)
         createdAtString = dictionary["created_at"] as? String
         
         // In the future, should make this a singleton because it is expensive
