@@ -274,14 +274,14 @@
                                             <constraint firstAttribute="height" constant="50" id="g3K-P8-sPH"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amF-hF-3Zn">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amF-hF-3Zn">
                                         <rect key="frame" x="70" y="10" width="38" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet text" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFR-FR-Zqf">
-                                        <rect key="frame" x="70" y="39" width="240" height="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tweet text" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFR-FR-Zqf">
+                                        <rect key="frame" x="70" y="39" width="240" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -398,6 +398,7 @@
                                     <constraint firstItem="4M9-by-NqQ" firstAttribute="top" secondItem="1Mg-oU-wSc" secondAttribute="bottom" constant="20" id="hUu-CG-RH9"/>
                                     <constraint firstItem="4M9-by-NqQ" firstAttribute="leading" secondItem="V67-8j-zYo" secondAttribute="trailing" constant="10" id="jBg-f3-g3S"/>
                                     <constraint firstItem="V67-8j-zYo" firstAttribute="leading" secondItem="1XL-uP-lyS" secondAttribute="trailing" constant="10" id="mr9-I3-tSx"/>
+                                    <constraint firstItem="1Mg-oU-wSc" firstAttribute="top" secondItem="CFR-FR-Zqf" secondAttribute="bottom" constant="20" id="p2y-eL-baj"/>
                                     <constraint firstItem="1Mg-oU-wSc" firstAttribute="top" secondItem="sRs-Qg-r3E" secondAttribute="bottom" constant="20" id="sT1-oU-hex"/>
                                     <constraint firstItem="1XL-uP-lyS" firstAttribute="leading" secondItem="aTV-nY-wEU" secondAttribute="trailing" constant="10" id="zbo-8e-ENb"/>
                                 </constraints>
@@ -418,6 +419,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateTextLabel" destination="1Mg-oU-wSc" id="eiY-L7-enC"/>
+                        <outlet property="nameLabel" destination="amF-hF-3Zn" id="Dzn-Ln-QbX"/>
+                        <outlet property="numFavoritesLabel" destination="V67-8j-zYo" id="DgM-TO-744"/>
+                        <outlet property="numRetweetsLabel" destination="aTV-nY-wEU" id="ZAk-Th-6kO"/>
+                        <outlet property="profilePicture" destination="sRs-Qg-r3E" id="6eP-tE-aTi"/>
+                        <outlet property="screenNameLabel" destination="icc-ij-uLX" id="82Z-JT-MXM"/>
+                        <outlet property="tweetTextLabel" destination="CFR-FR-Zqf" id="sBE-qA-CZf"/>
                         <segue destination="ldi-0U-dwb" kind="push" identifier="composeTweetFromDetailSegue" id="a92-IW-RI9"/>
                     </connections>
                 </viewController>
@@ -493,7 +501,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="VN9-MY-Xoy"/>
+        <segue reference="E8m-NR-RZg"/>
         <segue reference="a92-IW-RI9"/>
     </inferredMetricsTieBreakers>
 </document>

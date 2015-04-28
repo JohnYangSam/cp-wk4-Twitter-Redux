@@ -21,13 +21,52 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var numFavoritesLabel: UILabel!
     
     // Instance variables
-    var additionalText:String = ""
-    var tweet:Tweet?
+    var additionalText: String = ""
+    
+    // From the segue
+    var profilePictureURL: String? = ""
+    var name: String? = ""
+    var screenName: String? = ""
+    var tweetText: String? = ""
+    var dateText: String? = ""
+    var numRetweets: String? = ""
+    var numFavorites: String? = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if let pictureString: String = profilePictureURL  {
+            profilePicture.setImageWithURL(NSURL(string: pictureString))
+            
+        }
+        
+        if let nameText: String = name {
+            nameLabel.text = nameText
+        }
+        
+        if let screenname: String = screenName {
+            screenNameLabel.text = screenname
+        }
+        
+        if let text: String = tweetText {
+            self.tweetTextLabel.text = text
+        }
+        
+        if let dateString: String = dateText {
+            self.dateTextLabel.text = dateString
+        }
+        
+       
+        if let retweetCount: String = numRetweets {
+            numRetweetsLabel.text = retweetCount
+        }
+        
+        if let favoriteCount: String = numFavorites {
+            numFavoritesLabel.text = favoriteCount
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

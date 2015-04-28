@@ -112,10 +112,19 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         
         // For segue into TweetDetailViewController
         if segue.identifier == "tweetDetailViewSegue" {
-            var tweetDetailViewController: TweetDetailViewController = segue.destinationViewController as! TweetDetailViewController
+            var twc: TweetDetailViewController = segue.destinationViewController as! TweetDetailViewController
             var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow()!
             
             let tweet: Tweet = tweets[indexPath.row]
+            
+            twc.profilePictureURL = tweet.user?.profileImageUrl
+            twc.name = tweet.user?.name
+            twc.screenName = tweet.user?.screenname
+            twc.tweetText = tweet.text
+            twc.dateText = tweet.createdAtString
+            twc.numFavorites = tweet.favoriteCount
+            twc.numRetweets = tweet.retweetCount
+            
             println("seguing into detail tweet")
         }
     }
