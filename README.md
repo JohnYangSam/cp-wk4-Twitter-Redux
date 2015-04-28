@@ -26,6 +26,6 @@ Time spent: `~10hrs`
 
 ### Walkthrough
 
-![Video Walkthrough](https://github.com/JohnYangSam/cp-wk4-Twitter/raw/master/TwitterDemo.gif)
+![VideoWalkthrough](https://github.com/JohnYangSam/cp-wk4-Twitter/blob/master/TwitterDemo.gif?raw=true)
 
 Notes: Retweet, Reply, and Star Icons borrowed from the [Noun Project](https://thenounproject.com)
