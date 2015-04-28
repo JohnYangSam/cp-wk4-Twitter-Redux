@@ -23,8 +23,18 @@ class ViewController: UIViewController {
 
     @IBAction func onLogin(sender: AnyObject) {
         TwitterClient.sharedInstance.loginWithCompletion { (user, error) -> () in
-            
-            println("login succesful")
+            if (user != nil) {
+                println("login succesful")
+                self.performSegueWithIdentifier("loginSegue", sender: self)
+            } else {
+                println("\(error)")
+                var alert = UIAlertController(title: "Signup Error", message: error?.description, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler:
+                    nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                
+            }
         }
     }
     

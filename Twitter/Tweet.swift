@@ -30,7 +30,7 @@ class Tweet: NSObject {
         createdAtDate = formatter.dateFromString(createdAtString!)
     }
     
-    func tweetsWithArray(array: [NSDictionary]) -> [Tweet] {
+    class func tweetsWithArray(array: [NSDictionary]) -> [Tweet] {
         var tweets: [Tweet] = [Tweet]()
         for dict in array {
             tweets.append(Tweet(dictionary: dict))

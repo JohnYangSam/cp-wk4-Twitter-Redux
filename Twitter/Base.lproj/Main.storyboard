@@ -25,10 +25,86 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="dHI-OE-rVj" kind="modal" identifier="loginSegue" id="gvg-bB-gYN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="154.66666666666666" y="430.73333333333335"/>
+        </scene>
+        <!--Timeline View Controller-->
+        <scene sceneID="xP7-Xw-NuE">
+            <objects>
+                <viewController id="RBo-lx-Gxs" customClass="TimelineViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cbi-KV-n2S">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uuG-ty-TH9">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="grE-oL-xAu"/>
+                        <barButtonItem key="rightBarButtonItem" title="New" id="glE-YJ-G2e"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="dB3-ML-ZRc" kind="push" identifier="tweetDetailSegue" id="NQt-ee-KiY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OVe-ff-1rh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1398" y="430"/>
+        </scene>
+        <!--Tweet View Controller-->
+        <scene sceneID="mwI-aK-LPJ">
+            <objects>
+                <viewController id="ldi-0U-dwb" customClass="TweetViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MNt-WB-F1o">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Wda-08-Dps"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sx1-Ie-FvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1398" y="1260"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dJB-hy-8Lo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dHI-OE-rVj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dR3-vD-5Sw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RBo-lx-Gxs" kind="relationship" relationship="rootViewController" id="dfj-pV-2Me"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CpV-7v-uxU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="866" y="430"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NdS-Us-rWS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dB3-ML-ZRc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="T1R-Vy-Zom"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CnC-Kc-GkX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ldi-0U-dwb" kind="relationship" relationship="rootViewController" id="Hnm-Ce-zGc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wFE-BX-qhZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="866" y="1260"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
