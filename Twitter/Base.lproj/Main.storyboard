@@ -331,6 +331,9 @@
                                                 <state key="normal" title="Button" image="retweet">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onRetweetButtonClicked:" destination="5II-vv-B4n" eventType="touchUpInside" id="l6e-C3-9me"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIm-V8-gLe">
                                                 <rect key="frame" x="10" y="10" width="20" height="20"/>
@@ -341,6 +344,9 @@
                                                 <state key="normal" title="Button" image="reply">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onReplyButtonClicked:" destination="5II-vv-B4n" eventType="touchUpInside" id="SoL-Zh-syE"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPZ-oi-OnS">
                                                 <rect key="frame" x="130" y="10" width="20" height="20"/>
@@ -351,6 +357,9 @@
                                                 <state key="normal" title="Button" image="favorite">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onFavoriteButtonClicked:" destination="5II-vv-B4n" eventType="touchUpInside" id="cCk-Jd-M04"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.71464310519999996" green="1" blue="0.85335749809999994" alpha="1" colorSpace="calibratedRGB"/>
@@ -484,7 +493,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="E8m-NR-RZg"/>
-        <segue reference="ytW-yS-qcn"/>
+        <segue reference="VN9-MY-Xoy"/>
+        <segue reference="a92-IW-RI9"/>
     </inferredMetricsTieBreakers>
 </document>

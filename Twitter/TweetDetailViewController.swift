@@ -10,6 +10,7 @@ import UIKit
 
 class TweetDetailViewController: UIViewController {
 
+    // Outlets
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
@@ -18,6 +19,10 @@ class TweetDetailViewController: UIViewController {
     
     @IBOutlet weak var numRetweetsLabel: UILabel!
     @IBOutlet weak var numFavoritesLabel: UILabel!
+    
+    // Instance variables
+    var additionalText:String = ""
+    var tweet:Tweet?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +39,18 @@ class TweetDetailViewController: UIViewController {
     @IBAction func onReplyClick(sender: AnyObject) {
         self.performSegueWithIdentifier("composeTweetFromDetailSegue", sender: self)
     }
-        
-    @IBAction func onReplyButtonClicked(sender: AnyObject) {
-    }
-    
-    @IBAction func onRetweetClicked(sender: AnyObject) {
-    }
-    
-    @IBAction func onFavoriteClicked(sender: AnyObject) {
-    }
 
+    @IBAction func onReplyButtonClicked(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func onRetweetButtonClicked(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func onFavoriteButtonClicked(sender: AnyObject) {
+    }
+    
     /*
     // MARK: - Navigation
 
