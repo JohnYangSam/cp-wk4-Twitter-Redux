@@ -9,11 +9,23 @@
 import UIKit
 
 class TweetViewController: UIViewController {
+    
+    // Outlets
+    @IBOutlet weak var composeView: UITextView!
+    
+    // Instance Variables
+    var startingText: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-       UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.None)
+        
+        if startingText != "" {
+            composeView.text = startingText
+        } else {
+            composeView.text = "Enter your tweet here."
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

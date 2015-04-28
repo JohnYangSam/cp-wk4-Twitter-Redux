@@ -52,7 +52,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type you twitter message back here." translatesAutoresizingMaskIntoConstraints="NO" id="qEE-cP-w86">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEE-cP-w86">
                                 <rect key="frame" x="0.0" y="124" width="320" height="444"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -88,6 +88,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Tweet" id="YqH-eF-O0r"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="composeView" destination="qEE-cP-w86" id="Y99-0N-HGe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sx1-Ie-FvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -76,28 +76,38 @@ class TweetDetailViewController: UIViewController {
     
     // Button callbacks
     @IBAction func onReplyClick(sender: AnyObject) {
+        additionalText = "@\(name!) "
         self.performSegueWithIdentifier("composeTweetFromDetailSegue", sender: self)
+        
     }
 
     @IBAction func onReplyButtonClicked(sender: AnyObject) {
+        additionalText = "@\(name!) "
+        self.performSegueWithIdentifier("composeTweetFromDetailSegue", sender: self)
         
     }
     
     @IBAction func onRetweetButtonClicked(sender: AnyObject) {
-        
+        additionalText = "RT: \"\(tweetText!)\""
+        self.performSegueWithIdentifier("composeTweetFromDetailSegue", sender: self)
     }
     
     @IBAction func onFavoriteButtonClicked(sender: AnyObject) {
+        
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "composeTweetFromDetailSegue" {
+            
+            // Set up the additional text
+            var twc: TweetViewController = segue.destinationViewController as! TweetViewController
+            twc.startingText = additionalText
+        }
     }
-    */
 
 }
