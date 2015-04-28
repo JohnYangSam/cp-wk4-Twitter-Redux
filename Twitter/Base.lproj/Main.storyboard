@@ -109,7 +109,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetViewCell" rowHeight="115" id="oIC-5a-BD7" customClass="TweetViewCell" customModule="Twitter" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TweetViewCell" rowHeight="115" id="oIC-5a-BD7" customClass="TweetViewCell" customModule="Twitter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oIC-5a-BD7" id="Unc-fx-8ig">
@@ -128,7 +128,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet text goes here" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXg-P1-HcZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tweet text goes here" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXg-P1-HcZ">
                                                     <rect key="frame" x="68" y="35" width="242" height="10"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
@@ -139,7 +139,7 @@
                                                     <color key="textColor" red="0.6316090593" green="0.6316090593" blue="0.6316090593" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="253" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="#h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2v9-b8-hAJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="253" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" text="#h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2v9-b8-hAJ">
                                                     <rect key="frame" x="296" y="10" width="14" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.6316090593" green="0.6316090593" blue="0.6316090593" alpha="1" colorSpace="calibratedRGB"/>
@@ -217,6 +217,7 @@
                                             <outlet property="profilePicture" destination="Zo3-eG-dwG" id="5s5-Vg-CN7"/>
                                             <outlet property="screenNameLabel" destination="br2-9e-DZl" id="YvO-Vs-HT9"/>
                                             <outlet property="tweetTextLabel" destination="AXg-P1-HcZ" id="9cM-av-lKh"/>
+                                            <segue destination="5II-vv-B4n" kind="push" identifier="tweetDetailViewSegue" id="E8m-NR-RZg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -245,7 +246,6 @@
                     <connections>
                         <outlet property="tableView" destination="Xin-nj-VL8" id="j6k-qt-wks"/>
                         <segue destination="ldi-0U-dwb" kind="push" identifier="composeSegue" id="ytW-yS-qcn"/>
-                        <segue destination="5II-vv-B4n" kind="push" identifier="tweetDetailSegue" id="mLU-Mr-QT9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUP-C3-oBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -484,7 +484,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mLU-Mr-QT9"/>
-        <segue reference="a92-IW-RI9"/>
+        <segue reference="E8m-NR-RZg"/>
+        <segue reference="ytW-yS-qcn"/>
     </inferredMetricsTieBreakers>
 </document>

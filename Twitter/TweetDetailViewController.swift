@@ -10,6 +10,15 @@ import UIKit
 
 class TweetDetailViewController: UIViewController {
 
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var dateTextLabel: UILabel!
+    
+    @IBOutlet weak var numRetweetsLabel: UILabel!
+    @IBOutlet weak var numFavoritesLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,8 +30,18 @@ class TweetDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Button callbacks
     @IBAction func onReplyClick(sender: AnyObject) {
         self.performSegueWithIdentifier("composeTweetFromDetailSegue", sender: self)
+    }
+        
+    @IBAction func onReplyButtonClicked(sender: AnyObject) {
+    }
+    
+    @IBAction func onRetweetClicked(sender: AnyObject) {
+    }
+    
+    @IBAction func onFavoriteClicked(sender: AnyObject) {
     }
 
     /*

@@ -103,18 +103,21 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         return tweets.count
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        // For segue into TweetDetailViewController
+        if segue.identifier == "tweetDetailViewSegue" {
+            var tweetDetailViewController: TweetDetailViewController = segue.destinationViewController as! TweetDetailViewController
+            var indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow()!
+            
+            let tweet: Tweet = tweets[indexPath.row]
+            println("seguing into detail tweet")
+        }
     }
-    */
 
 }
