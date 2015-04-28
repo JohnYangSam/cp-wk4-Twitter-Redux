@@ -70,7 +70,19 @@
                     <view key="view" contentMode="scaleToFill" id="L91-r5-b9k">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Xin-nj-VL8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Xin-nj-VL8" secondAttribute="bottom" id="3JG-jQ-j6w"/>
+                            <constraint firstItem="Xin-nj-VL8" firstAttribute="leading" secondItem="L91-r5-b9k" secondAttribute="leading" id="4gL-M9-Vfm"/>
+                            <constraint firstItem="Xin-nj-VL8" firstAttribute="top" secondItem="L91-r5-b9k" secondAttribute="top" id="VGk-LF-aHq"/>
+                            <constraint firstAttribute="trailing" secondItem="Xin-nj-VL8" secondAttribute="trailing" id="iMB-S7-wF0"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uWg-bZ-QI2">
                         <barButtonItem key="leftBarButtonItem" title="Sign Out" id="Lmd-84-uZB"/>
