@@ -33,7 +33,6 @@ class ViewController: UIViewController {
                     nil))
                 self.presentViewController(alert, animated: true, completion: nil)
                 
-                
             }
         }
     }
