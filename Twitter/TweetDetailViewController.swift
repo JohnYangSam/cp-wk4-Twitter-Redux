@@ -32,6 +32,8 @@ class TweetDetailViewController: UIViewController {
     var numRetweets: String? = ""
     var numFavorites: String? = ""
     
+    var tweet: Tweet?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -76,24 +78,63 @@ class TweetDetailViewController: UIViewController {
     
     // Button callbacks
     @IBAction func onReplyClick(sender: AnyObject) {
-        additionalText = "@\(name!) "
+        additionalText = "@\(screenName!) "
         self.performSegueWithIdentifier("composeTweetFromDetailSegue", sender: self)
         
     }
 
     @IBAction func onReplyButtonClicked(sender: AnyObject) {
-        additionalText = "@\(name!) "
+        additionalText = "@\(screenName!) "
         self.performSegueWithIdentifier("composeTweetFromDetailSegue", sender: self)
         
     }
     
     @IBAction func onRetweetButtonClicked(sender: AnyObject) {
-        additionalText = "RT: \"\(tweetText!)\""
-        self.performSegueWithIdentifier("composeTweetFromDetailSegue", sender: self)
+        //additionalText = "RT: \"\(tweetText!)\""
+        //self.performSegueWithIdentifier("composeTweetFromDetailSegue", sender: self)
+        
+        if tweet!.retweeted {
+            var alert = UIAlertController(title: "Already RT'd", message: "You've already retweeted this!", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler:
+                nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            TwitterClient.sharedInstance.reTweetWithCompletion(tweet!.tweetId!, completion: { (error) -> () in
+                if error != nil {
+                    var alert = UIAlertController(title: "Success", message: "Tweet retweeted!", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler:
+                        nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                    self.tweet?.retweeted = true
+                    self.numRetweetsLabel.text = String(self.numRetweets!.toInt()! + 1)
+                }
+            })
+        }
     }
     
     @IBAction func onFavoriteButtonClicked(sender: AnyObject) {
         
+        if tweet!.favorited {
+            var alert = UIAlertController(title: "Already Favorited", message: "You've already favorited this tweet!", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler:
+                nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        } else {
+            
+            TwitterClient.sharedInstance.favoriteWithCompletion(tweet!.tweetId!, completion: { (error) -> () in
+                if error != nil {
+                    var alert = UIAlertController(title: "Success", message: "Tweet favorited!", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler:
+                        nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                    self.tweet?.favorited = true
+                    self.numFavoritesLabel.text = String(self.numFavorites!.toInt()! + 1)
+                }
+            })
+        }
     }
     
     // MARK: - Navigation

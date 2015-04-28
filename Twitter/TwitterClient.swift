@@ -97,4 +97,38 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         })
     }
     
+    func postTweetWithCompletion(tweet: String, completion: (error: NSError?) -> ()) {
+        self.POST("1.1/statuses/update.json", parameters: ["status": tweet], success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            
+            completion(error: nil)
+            
+        }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+            
+            completion(error: error)
+            
+        }
+    }
+    
+    func reTweetWithCompletion(tweetId: String, completion: (error: NSError?) -> ()) {
+        self.POST("1.1/statuses/retweet/\(tweetId).json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, error: AnyObject!) -> Void in
+            
+            completion(error: nil)
+            
+        }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+            
+                completion(error: error)
+        }
+    }
+
+    func favoriteWithCompletion(tweetId: String, completion: (error: NSError?) -> ()) {
+        self.POST("1.1/favorites/create.json", parameters: ["id": tweetId], success: { (operation, response) -> Void in
+            
+            completion(error: nil)
+            
+        }, failure: { (operation, error) -> Void in
+                
+            completion(error: error)
+        })
+    }
+    
 }

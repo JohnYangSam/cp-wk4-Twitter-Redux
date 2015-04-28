@@ -86,7 +86,11 @@
                                 <action selector="onCancelClick:" destination="ldi-0U-dwb" id="ZCg-rP-fZD"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="YqH-eF-O0r"/>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="YqH-eF-O0r">
+                            <connections>
+                                <action selector="onTweetClicked:" destination="ldi-0U-dwb" id="LUS-Dl-fo4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="composeView" destination="qEE-cP-w86" id="Y99-0N-HGe"/>
@@ -148,7 +152,7 @@
                                                     <color key="textColor" red="0.6316090593" green="0.6316090593" blue="0.6316090593" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIH-TT-bSh">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIH-TT-bSh">
                                                     <rect key="frame" x="70" y="64" width="160" height="40"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPM-Cr-Ua0">
@@ -160,6 +164,9 @@
                                                             <state key="normal" title="Button" image="retweet">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="onCellRetweetClicked:" destination="oIC-5a-BD7" eventType="touchUpInside" id="E2w-ti-iba"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kB8-1F-Me5">
                                                             <rect key="frame" x="10" y="10" width="20" height="20"/>
@@ -170,6 +177,9 @@
                                                             <state key="normal" title="Button" image="reply">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="onCellReplyClicked:" destination="oIC-5a-BD7" eventType="touchUpInside" id="Pc4-Nv-Anr"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPQ-WT-BXM">
                                                             <rect key="frame" x="130" y="10" width="20" height="20"/>
@@ -180,6 +190,9 @@
                                                             <state key="normal" title="Button" image="favorite">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="onCellFavoriteClicked:" destination="oIC-5a-BD7" eventType="touchUpInside" id="CTS-yf-6dY"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.71464310518280638" green="1" blue="0.85335749814693651" alpha="1" colorSpace="calibratedRGB"/>
@@ -196,6 +209,12 @@
                                                         <constraint firstAttribute="centerY" secondItem="kB8-1F-Me5" secondAttribute="centerY" id="y65-hG-6Wr"/>
                                                     </constraints>
                                                 </view>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="id" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32n-1d-zMc">
+                                                    <rect key="frame" x="273" y="83" width="14" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="br2-9e-DZl" firstAttribute="leading" secondItem="0K8-3Q-G9b" secondAttribute="trailing" constant="8" id="1Rn-lU-B9S"/>
@@ -219,6 +238,7 @@
                                             <outlet property="nameLabel" destination="0K8-3Q-G9b" id="hlT-rM-OA0"/>
                                             <outlet property="profilePicture" destination="Zo3-eG-dwG" id="5s5-Vg-CN7"/>
                                             <outlet property="screenNameLabel" destination="br2-9e-DZl" id="YvO-Vs-HT9"/>
+                                            <outlet property="tweetIdLabel" destination="32n-1d-zMc" id="CYc-7O-rHs"/>
                                             <outlet property="tweetTextLabel" destination="AXg-P1-HcZ" id="9cM-av-lKh"/>
                                             <segue destination="5II-vv-B4n" kind="push" identifier="tweetDetailViewSegue" id="E8m-NR-RZg"/>
                                         </connections>
@@ -351,8 +371,8 @@
                                                     <action selector="onReplyButtonClicked:" destination="5II-vv-B4n" eventType="touchUpInside" id="SoL-Zh-syE"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPZ-oi-OnS">
-                                                <rect key="frame" x="130" y="10" width="20" height="20"/>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPZ-oi-OnS">
+                                                <rect key="frame" x="132" y="10" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="6DM-xr-Rm7"/>
                                                     <constraint firstAttribute="height" constant="20" id="mle-VY-hsM"/>
@@ -505,6 +525,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="E8m-NR-RZg"/>
-        <segue reference="a92-IW-RI9"/>
+        <segue reference="ytW-yS-qcn"/>
     </inferredMetricsTieBreakers>
 </document>

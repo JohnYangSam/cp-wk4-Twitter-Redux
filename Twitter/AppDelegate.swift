@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
         
+        // This is the check with user data
         if User.currentUser != nil {
             println("Current user in the app is: \(User.currentUser?.name)")
             // Important see: http://stackoverflow.com/a/28520674/830367

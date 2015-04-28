@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TweetViewCellDelegate {
     
     // Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -16,6 +16,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     // Instance variables
     var tweets: [Tweet] = []
     var refreshControl: UIRefreshControl!
+    var additionalText: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,9 +81,14 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         var cell: TweetViewCell = tableView.dequeueReusableCellWithIdentifier("TweetViewCell") as! TweetViewCell
         
         let tweet:Tweet = tweets[indexPath.row]
+        println("tweet from hometimeline: \(tweet.tweetId)")
+        
+        cell.tweetIdLabel.text = tweet.tweetId!
         
         if let user:User = tweet.user {
             cell.profilePicture.setImageWithURL(NSURL(string: user.profileImageUrl!)!)
+            cell.nameLabel.text = user.name
+            cell.screenNameLabel.text = user.screenname
         }
         
         if let text:String = tweet.text {
@@ -95,6 +101,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             cell.hoursLabel.text = time + "h"
             
         }
+       
+        cell.delegate = self
+        
         return cell
         
     }
@@ -103,6 +112,37 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         return tweets.count
     }
     
+    // TweetViewCell Delegation
+    
+    func retweetTweet(tweetId: String) {
+        TwitterClient.sharedInstance.reTweetWithCompletion(tweetId, completion: { (error) -> () in
+            if error != nil {
+                var alert = UIAlertController(title: "Success", message: "Tweet retweeted!", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler:
+                    nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        })
+    
+    }
+    
+    func favoriteTweet(tweetId: String) {
+        TwitterClient.sharedInstance.favoriteWithCompletion(tweetId, completion: { (error) -> () in
+            if error != nil {
+                var alert = UIAlertController(title: "Success", message: "Tweet favorited!", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler:
+                    nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        })
+    
+    }
+    
+    func replyToTweet(screenname: String) {
+        additionalText = "@\(screenname) "
+        self.performSegueWithIdentifier("composeSegue", sender: self)
+    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -124,8 +164,16 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             twc.dateText = tweet.createdAtString
             twc.numFavorites = tweet.favoriteCount
             twc.numRetweets = tweet.retweetCount
+            twc.tweet = tweet
             
             println("seguing into detail tweet")
+        }
+        
+        if segue.identifier == "composeSegue" {
+            
+            // Set up the additional text
+            var twc: TweetViewController = segue.destinationViewController as! TweetViewController
+            twc.startingText = additionalText
         }
     }
 

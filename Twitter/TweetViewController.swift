@@ -38,6 +38,12 @@ class TweetViewController: UIViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBAction func onTweetClicked(sender: AnyObject) {
+        let tweetText: String = composeView.text!
+        TwitterClient.sharedInstance.postTweetWithCompletion(tweetText, completion: { (error) -> () in
+            self.navigationController?.popViewControllerAnimated(true)
+        })
+    }
 
     /*
     // MARK: - Navigation

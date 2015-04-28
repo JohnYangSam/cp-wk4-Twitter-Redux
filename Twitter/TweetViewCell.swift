@@ -10,6 +10,9 @@ import UIKit
 
 // TODO Should a delegate be used for buttons?
 protocol TweetViewCellDelegate {
+    func retweetTweet(tweetId: String)
+    func favoriteTweet(tweetId: String)
+    func replyToTweet(screenname: String)
 }
 
 
@@ -22,12 +25,20 @@ class TweetViewCell: UITableViewCell {
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var hoursLabel: UILabel!
     
+    // TODO: This is hack to get the twitter id - instance variables for some reason aren't persisting
+    @IBOutlet weak var tweetIdLabel: UILabel!
+    
     // Tweet
-    var tweet: Tweet?
+    //var tweetId: String?
+    //var tweet: Tweet?
+    
+    // Additional vars
+    var delegate: TimelineViewController!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        println("tweetId: \(tweetIdLabel.text)")
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -39,18 +50,17 @@ class TweetViewCell: UITableViewCell {
     // NOTE THAT THIS IS HIDDEN BECAUSE IT IS NOT FINISHED
     
     // Button Clicks
-    /*
-    @IBAction func onReplyClick(sender: AnyObject) {
-        // TODO: What is the best way to have these buttons open a new view controller. Is it a delegate?
-        
+    @IBAction func onCellReplyClicked(sender: AnyObject) {
+        delegate.replyToTweet(screenNameLabel.text!)
     }
     
-    @IBAction func onRetweetClick(sender: AnyObject) {
-        // To fill in
+    @IBAction func onCellRetweetClicked(sender: AnyObject) {
+        delegate.retweetTweet(tweetIdLabel.text!)
     }
     
-    @IBAction func onFavoriteClick(sender: AnyObject) {
-        // To fill in
+    @IBAction func onCellFavoriteClicked(sender: AnyObject) {
+        println("tweetId in favorite: \(tweetIdLabel.text)")
+        delegate.favoriteTweet(tweetIdLabel.text!)
     }
-    */
+    
 }
