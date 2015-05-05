@@ -14,6 +14,9 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
     var timelineViewController: TimelineViewController!
     var mentionsViewController: MentionsViewController!
     var sidePanelViewController: SidePanelViewController!
+    
+    
+    var panelVisible:Bool = false
 
     @IBOutlet var containerView: UIView!
     
@@ -79,7 +82,23 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
     }
     
     func animatePanel(expand: Bool) {
+        if(expand) {
+            panelVisible = true
+            slideCenterPanel(CGRectGetWidth(containerView.frame) - 140)
+        } else {
+            slideCenterPanel(CGFloat(0))
+            panelVisible = false
+        }
+    }
     
+    // Slide the center panel to finalPos
+    func slideCenterPanel(finalPos: CGFloat) {
+        UIView.animateWithDuration(0.35, animations: { () -> Void in
+            self.containerView.frame.origin.x = finalPos
+            }) { (complete: Bool) -> Void in
+                // Nothing
+                println("Sliding completed")
+        }
     }
     
     
