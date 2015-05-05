@@ -122,12 +122,16 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oIC-5a-BD7" id="Unc-fx-8ig">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zo3-eG-dwG">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zo3-eG-dwG">
                                                     <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="0cm-Ae-4Vy"/>
                                                         <constraint firstAttribute="width" constant="50" id="gpM-Ie-CHk"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="8EC-lN-V7c" appends="YES" id="ZMr-X4-CbG"/>
+                                                    </connections>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0K8-3Q-G9b">
                                                     <rect key="frame" x="68" y="10" width="38" height="17"/>
@@ -269,9 +273,15 @@
                     <connections>
                         <outlet property="tableView" destination="Xin-nj-VL8" id="j6k-qt-wks"/>
                         <segue destination="ldi-0U-dwb" kind="push" identifier="composeSegue" id="ytW-yS-qcn"/>
+                        <segue destination="18G-bN-0Jo" kind="push" identifier="profileSegue" id="7As-ly-FNy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUP-C3-oBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8EC-lN-V7c">
+                    <connections>
+                        <action selector="onProfileImageTapped:" destination="4ga-au-HvK" id="0Qd-e5-p70"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="992" y="430"/>
         </scene>
@@ -493,10 +503,10 @@
             </objects>
             <point key="canvasLocation" x="554" y="430"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="D25-MQ-0Zx">
             <objects>
-                <viewController id="18G-bN-0Jo" sceneMemberID="viewController">
+                <viewController id="18G-bN-0Jo" customClass="ProfileViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aVi-8T-aRI"/>
                         <viewControllerLayoutGuide type="bottom" id="4Uh-YC-dpz"/>
@@ -509,7 +519,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="173" id="w62-gW-LCz">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="173" id="w62-gW-LCz" customClass="ProfileHeaderCell" customModule="Twitter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w62-gW-LCz" id="rRS-4P-eAf">
@@ -588,6 +598,12 @@
                                                 <constraint firstItem="qi2-X9-3Vn" firstAttribute="top" secondItem="rRS-4P-eAf" secondAttribute="top" constant="10" id="zGg-mM-TS0"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="numFollowers" destination="J7x-4Z-nGq" id="gTu-bK-3iw"/>
+                                            <outlet property="numFollowing" destination="P71-gI-MZu" id="ymV-0z-6ix"/>
+                                            <outlet property="numTweets" destination="bh0-oN-kfw" id="BCa-xl-TVr"/>
+                                            <outlet property="profileViewImage" destination="qi2-X9-3Vn" id="EXz-Cj-jiO"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TweetViewCell" rowHeight="115" id="8Dh-Ku-j1P" customClass="TweetViewCell" customModule="Twitter" customModuleProvider="target">
                                         <rect key="frame" x="10" y="74" width="320" height="115"/>
@@ -721,7 +737,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="ytW-yS-qcn"/>
         <segue reference="E8m-NR-RZg"/>
-        <segue reference="a92-IW-RI9"/>
+        <segue reference="7As-ly-FNy"/>
     </inferredMetricsTieBreakers>
 </document>

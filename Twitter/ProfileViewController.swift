@@ -9,6 +9,9 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    // Store user information through the segue
+    var user:User!
 
     override func viewDidLoad() {
         super.viewDidLoad()

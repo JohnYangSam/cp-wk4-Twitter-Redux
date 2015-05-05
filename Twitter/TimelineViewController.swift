@@ -73,7 +73,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func onClickComposeTweet(sender: AnyObject) {
-        self.performSegueWithIdentifier("composeSegue", sender: self)
+        self.performSegueWithIdentifier("composeSegue", sender: sender)
+    }
+    
+    
+    @IBAction func onProfileImageTapped(sender: AnyObject) {
+        self.performSegueWithIdentifier("profileSegue", sender: sender)
     }
     
     // TableView Methods
@@ -174,6 +179,22 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             var twc: TweetViewController = segue.destinationViewController as! TweetViewController
             twc.startingText = additionalText
             additionalText = "" // reset the additional text
+        }
+        
+        if segue.identifier == "profileSegue" {
+            // Setup the incoming view controller
+            var pvc: ProfileViewController = segue.destinationViewController as! ProfileViewController
+            
+            // Get the location of what was tapped
+            var gesture = sender as! UITapGestureRecognizer
+            var location = gesture.locationInView(tableView)
+            var tappedIndexPath = tableView.indexPathForRowAtPoint(location)!
+            
+            // Set the user for the profile controller
+            pvc.user = tweets[tappedIndexPath.row].user
+            
+            println("user being sent: \(pvc.user)")
+            
         }
     }
 
