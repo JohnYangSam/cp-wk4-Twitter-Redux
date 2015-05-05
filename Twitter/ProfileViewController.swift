@@ -54,6 +54,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         var cell: UITableViewCell!
         
         if indexPath.row == 0 {
+            println("profile view header instantiated")
             var phc = tableView.dequeueReusableCellWithIdentifier("ProfileHeaderCell", forIndexPath: indexPath) as! ProfileHeaderCell
             
             phc.profileViewImage.setImageWithURL(NSURL(string: user.profileImageUrl!))

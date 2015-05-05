@@ -50,6 +50,7 @@ class SidePanelViewController: UIViewController, UITableViewDataSource, UITableV
         
         var cell: MenuCell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuCell
         
+        println("indexPath SidePanel:\(indexPath.row)")
         switch indexPath.row {
         case 0:
             cell.menuLabel.text = "Profile"
@@ -61,6 +62,7 @@ class SidePanelViewController: UIViewController, UITableViewDataSource, UITableV
             cell.menuLabel.text = "Mentions"
             break
         default:
+            cell.menuLabel.text = "Mentions"
             break
             
         }
@@ -82,6 +84,7 @@ class SidePanelViewController: UIViewController, UITableViewDataSource, UITableV
             delegate?.showTimeline()
             break
         case 2:
+            println("show mentions clicked")
             delegate?.showMentions()
             break
         default:

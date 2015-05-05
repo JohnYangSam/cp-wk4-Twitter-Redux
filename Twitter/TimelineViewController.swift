@@ -17,6 +17,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     var tweets: [Tweet] = []
     var refreshControl: UIRefreshControl!
     var additionalText: String = ""
+    
+    var hasUser: Bool = false
+    var user: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         // Do any additional setup after loading the view.
         
         // Add UIRefreshControl as a subview of the UITableView - using the lowest index so that it appears behind everything
+        
+        // Mentions hack
+        if (self.hasUser == true) {
+            self.navigationItem.title = "mentions"
+        }
+        
         refreshControl = UIRefreshControl()
         // 'onRefresh' will be the function called
         refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
@@ -37,28 +46,54 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 300
         
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
+        if (!hasUser) {
+            TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             
-            if tweets != nil {
-                self.tweets = tweets!
-                self.tableView.reloadData()
-            } else {
-                // Handle the error here
-            }
-        })
-        
+                if tweets != nil {
+                    self.tweets = tweets!
+                    self.tableView.reloadData()
+                } else {
+                    // Handle the error here
+                }
+            })
+        } else {
+            var params:NSDictionary = NSDictionary(object: user.screenname!, forKey: "screen_name")
+            TwitterClient.sharedInstance.mentionsWithParams(nil, completion: { (tweets, error) -> () in
+            
+                if tweets != nil {
+                    self.tweets = tweets!
+                    self.tableView.reloadData()
+                } else {
+                    // Handle the error here
+                }
+            })
+        }
     }
     
     func onRefresh() {
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
-            if tweets != nil {
-                self.tweets = tweets!
-                self.tableView.reloadData()
-            } else {
-                // Handle the error here
-            }
-            self.refreshControl.endRefreshing()
-        })
+        if (!hasUser) {
+            TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
+                
+                if tweets != nil {
+                    self.tweets = tweets!
+                    self.tableView.reloadData()
+                } else {
+                    // Handle the error here
+                }
+            })
+        } else {
+            var params:NSDictionary = NSDictionary(object: user.screenname!, forKey: "screen_name")
+            TwitterClient.sharedInstance.mentionsWithParams(nil, completion: { (tweets, error) -> () in
+                
+                if tweets != nil {
+                    self.tweets = tweets!
+                    self.tableView.reloadData()
+                } else {
+                    // Handle the error here
+                }
+            })
+        }
+        self.refreshControl.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {

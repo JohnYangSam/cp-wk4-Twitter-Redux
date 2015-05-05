@@ -13,7 +13,7 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
     var profileViewController: ProfileViewController!
     var timelineNavController: TimelineNavController!
     var timelineViewController: TimelineViewController!
-    var mentionsViewController: MentionsViewController!
+    var mentionsNavController: TimelineNavController!
     var sidePanelViewController: SidePanelViewController!
     
     
@@ -42,18 +42,18 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
         sidePanelViewController.delegate = self
         
         // Insert the side panel into the container
-        //view.insertSubview(sidePanelViewController.view, atIndex: 0)
-        //addChildViewController(sidePanelViewController)
+        view.insertSubview(sidePanelViewController.view, atIndex: 0)
+        addChildViewController(sidePanelViewController)
         //view.addSubview(sidePanelViewController.view)
-        //sidePanelViewController.didMoveToParentViewController(self)
+        sidePanelViewController.didMoveToParentViewController(self)
         
         // Setup profile
         profileViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
         profileViewController.user = User.currentUser
         
         // Setup mentions
-        mentionsViewController = storyBoard.instantiateViewControllerWithIdentifier("MentionsViewController") as! MentionsViewController
-        mentionsViewController.user = User.currentUser
+        mentionsNavController = storyBoard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! TimelineNavController
+        //mentionsViewController.child.user = User.currentUser
         
         // Add gestures
         var tapGesture = UITapGestureRecognizer(target: self, action: "onTapGesture:")
@@ -96,6 +96,7 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
         } else {
             slideCenterPanel(CGFloat(0))
             panelVisible = false
+            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
         }
     }
     
@@ -129,14 +130,15 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
     }
     
     func showTimeline() {
-        displayViewController(timelineViewController)
+        displayViewController(timelineNavController)
         animatePanel(false)
         
     }
     
     func showMentions() {
-        mentionsViewController.user = User.currentUser
-        displayViewController(mentionsViewController)
+        (mentionsNavController.childViewControllers[0] as! TimelineViewController).hasUser = true
+        (mentionsNavController.childViewControllers[0] as! TimelineViewController).user = User.currentUser
+        displayViewController(mentionsNavController)
         animatePanel(false)
         
     }
