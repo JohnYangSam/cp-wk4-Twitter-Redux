@@ -20,13 +20,21 @@ class User: NSObject {
     var profileImageUrl: String?
     var tagline: String?
     var dictionary: NSDictionary?
+    var numTweets: String?
+    var numFollowers: String?
+    var numFollowing: String?
     
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
+        println("user dic: \(dictionary)")
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
         profileImageUrl = dictionary["profile_image_url"] as? String
         tagline = dictionary["description"] as? String
+        
+        numTweets =  dictionary["statuses_count"] as? String
+        numFollowers = dictionary["followers_count"] as? String
+        numFollowing = dictionary["following"] as? String
     }
     
     // Special class variable with a getter and setter

@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var tweets: [Tweet] = []
     
     // Store user information through the segue
     var user:User!
@@ -17,11 +21,41 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        var cell: UITableViewCell!
+        
+        if indexPath.row == 0 {
+            var phc = tableView.dequeueReusableCellWithIdentifier("ProfileHeaderCell", forIndexPath: indexPath) as! ProfileHeaderCell
+            
+            phc.profileViewImage.setImageWithURL(NSURL(string: user.profileImageUrl!))
+            
+            //phc.numTweets.text =
+            
+        } else {
+            var twc = tableView.dequeueReusableCellWithIdentifier("TweetViewCell", forIndexPath: indexPath) as! TweetViewCell
+        }
+        return cell
+    }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        // +1 because of the profile header cell
+        return tweets.count + 1
     }
     
 
