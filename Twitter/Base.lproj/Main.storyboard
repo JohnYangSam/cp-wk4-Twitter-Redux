@@ -469,7 +469,7 @@
         <!--Side Panel View Controller-->
         <scene sceneID="ddt-9x-0Dc">
             <objects>
-                <viewController id="vd8-d4-gMN" customClass="SidePanelViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SidePanelViewController" id="vd8-d4-gMN" customClass="SidePanelViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m1Z-oL-EBS"/>
                         <viewControllerLayoutGuide type="bottom" id="mxe-sa-lbe"/>
@@ -533,6 +533,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="iXh-o7-E7r" id="vai-0F-hGx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EmV-xR-VcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -578,7 +581,7 @@
         <!--Profile View Controller-->
         <scene sceneID="D25-MQ-0Zx">
             <objects>
-                <viewController id="18G-bN-0Jo" customClass="ProfileViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="18G-bN-0Jo" customClass="ProfileViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aVi-8T-aRI"/>
                         <viewControllerLayoutGuide type="bottom" id="4Uh-YC-dpz"/>
@@ -788,7 +791,7 @@
         <!--Mentions View Controller-->
         <scene sceneID="qOD-iZ-Dkg">
             <objects>
-                <viewController id="Bas-8E-jYB" customClass="MentionsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MentionsViewController" id="Bas-8E-jYB" customClass="MentionsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tSc-Nz-JAW"/>
                         <viewControllerLayoutGuide type="bottom" id="EVD-a5-uBT"/>

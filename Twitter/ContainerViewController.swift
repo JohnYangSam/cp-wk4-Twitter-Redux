@@ -10,19 +10,101 @@ import UIKit
 
 class ContainerViewController: UIViewController, SidePanelViewControllerDelegate, UIGestureRecognizerDelegate {
     
-    var profileViewController: ProfileViewController
+    var profileViewController: ProfileViewController!
     var timelineViewController: TimelineViewController!
     var mentionsViewController: MentionsViewController!
+    var sidePanelViewController: SidePanelViewController!
 
+    @IBOutlet var containerView: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        var storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Setup timeline
+        timelineViewController = storyBoard.instantiateViewControllerWithIdentifier("TimelineViewController") as! TimelineViewController
+        
+        // Display the timeline in the container
+        displayViewController(timelineViewController)
+        
+        sidePanelViewController = storyBoard.instantiateViewControllerWithIdentifier("SidePanelViewController") as! SidePanelViewController
+        
+        sidePanelViewController.delegate = self
+        
+        // Insert the side panel into the container
+        view.insertSubview(sidePanelViewController.view, atIndex: 0)
+        addChildViewController(sidePanelViewController)
+        sidePanelViewController.didMoveToParentViewController(self)
+        
+        // Setup profile
+        profileViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        profileViewController.user = User.currentUser
+        
+        // Setup mentions
+        mentionsViewController = storyBoard.instantiateViewControllerWithIdentifier("MentionsViewController") as! MentionsViewController
+        mentionsViewController.user = User.currentUser
+        
+        // Add gestures
+        var tapGesture = UITapGestureRecognizer(target: self, action: "onTapGesture:")
+        tapGesture.delegate = self
+        containerView.addGestureRecognizer(tapGesture)
+        
+        var edgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "onEdgePanLeft:")
+        edgePanGesture.edges = UIRectEdge.Left
+        view.addGestureRecognizer(edgePanGesture)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // To open the panel
+    func onEdgePanLeft(sender: UIScreenEdgePanGestureRecognizer) {
+        if sender.state == UIGestureRecognizerState.Ended {
+            animatePanel(true)
+        }
+    }
+    
+    // To close the panel
+    func onTapGesture(sender: UITapGestureRecognizer) {
+        if sender.state == UIGestureRecognizerState.Ended {
+            animatePanel(false)
+        }
+    }
+    
+    func animatePanel(expand: Bool) {
+    
+    }
+    
+    
+    // Side Panel View Controller Delegate Methods
+    func toggleSidePanel() {
+        
+    }
+    
+    func showProfile() {
+        
+    }
+    
+    func showTimeline() {
+        
+    }
+    
+    func showMentions() {
+        
+    }
+    
+    func displayViewController(viewController: UIViewController) {
+        addChildViewController(viewController)
+        viewController.view.frame = containerView.bounds
+        containerView.addSubview(viewController.view)
+        viewController.didMoveToParentViewController(self)
     }
     
 
