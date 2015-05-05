@@ -27,9 +27,17 @@ class SidePanelViewController: UIViewController, UITableViewDataSource, UITableV
 
         // Do any additional setup after loading the view.
         
+        // UITableView automatic dimensions
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 300
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.reloadData()
+        
+        self.view.backgroundColor = UIColor.whiteColor();
+        
+        println("Panel has loaded")
         
     }
 
@@ -56,6 +64,7 @@ class SidePanelViewController: UIViewController, UITableViewDataSource, UITableV
             break
             
         }
+        println("Menu Label: \(cell.menuLabel.text)")
         return cell
     }
     

@@ -73,7 +73,7 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
     
     // To open the panel
     func onEdgePanLeft(sender: UIScreenEdgePanGestureRecognizer) {
-        println("EdgePanLeftGesture Recognized")
+        //println("EdgePanLeftGesture Recognized")
         if sender.state == UIGestureRecognizerState.Ended {
             animatePanel(true)
         }
