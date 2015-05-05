@@ -11,6 +11,7 @@ import UIKit
 class ContainerViewController: UIViewController, SidePanelViewControllerDelegate, UIGestureRecognizerDelegate {
     
     var profileViewController: ProfileViewController!
+    var timelineNavController: TimelineNavController!
     var timelineViewController: TimelineViewController!
     var mentionsViewController: MentionsViewController!
     var sidePanelViewController: SidePanelViewController!
@@ -23,16 +24,19 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        println("LoadedContainerView")
 
         // Do any additional setup after loading the view.
         
         var storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
         // Setup timeline
-        timelineViewController = storyBoard.instantiateViewControllerWithIdentifier("TimelineViewController") as! TimelineViewController
+        timelineNavController = storyBoard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! TimelineNavController
+        timelineViewController = timelineNavController.childViewControllers[0] as! TimelineViewController
         
         // Display the timeline in the container
-        displayViewController(timelineViewController)
+        displayViewController(timelineNavController)
         
         sidePanelViewController = storyBoard.instantiateViewControllerWithIdentifier("SidePanelViewController") as! SidePanelViewController
         
@@ -69,6 +73,7 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
     
     // To open the panel
     func onEdgePanLeft(sender: UIScreenEdgePanGestureRecognizer) {
+        println("EdgePanLeftGesture Recognized")
         if sender.state == UIGestureRecognizerState.Ended {
             animatePanel(true)
         }
@@ -76,6 +81,7 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
     
     // To close the panel
     func onTapGesture(sender: UITapGestureRecognizer) {
+        println("Tap Gesture Recognized")
         if sender.state == UIGestureRecognizerState.Ended {
             animatePanel(false)
         }
@@ -101,21 +107,34 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
         }
     }
     
+    // We only want this to recieve the touch for closing the menu if the menu is visible
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        return panelVisible
+    }
+    
     
     // Side Panel View Controller Delegate Methods
     func toggleSidePanel() {
-        
+        animatePanel(panelVisible)
     }
     
     func showProfile() {
+        profileViewController.user = User.currentUser
+        displayViewController(profileViewController)
+        animatePanel(false)
         
     }
     
     func showTimeline() {
+        displayViewController(timelineViewController)
+        animatePanel(false)
         
     }
     
     func showMentions() {
+        mentionsViewController.user = User.currentUser
+        displayViewController(mentionsViewController)
+        animatePanel(false)
         
     }
     

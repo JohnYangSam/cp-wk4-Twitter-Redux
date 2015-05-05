@@ -93,6 +93,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
             
             println("Error getting user's home timeline")
+            println("\(error)")
             completion(tweets: nil, error: error)
         })
     }
@@ -142,7 +143,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
             
             }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 
-                println("Error getting user's home timeline")
+                println("Error getting user's timeline")
                 completion(tweets: nil, error: error)
         })
     }
@@ -157,7 +158,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
             
             }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 
-                println("Error getting user's home timeline")
+                println("Error getting user's mentions timeline")
                 completion(tweets: nil, error: error)
         })
     }

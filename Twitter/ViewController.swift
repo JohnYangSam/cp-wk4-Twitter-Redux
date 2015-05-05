@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         TwitterClient.sharedInstance.loginWithCompletion { (user, error) -> () in
             if (user != nil) {
                 println("login succesful")
-                self.performSegueWithIdentifier("loginSegue", sender: self)
+                self.performSegueWithIdentifier("containerSegue", sender: self)
             } else {
                 println("\(error)")
                 var alert = UIAlertController(title: "Signup Error", message: error?.description, preferredStyle: UIAlertControllerStyle.Alert)
