@@ -8,9 +8,19 @@
 
 import UIKit
 
+protocol SidePanelViewControllerDelegate {
+    func toggleSidePanel()
+    func showProfile()
+    func showTimeline()
+    func showMentions()
+}
+
 class SidePanelViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    
+    var delegate: SidePanelViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +65,20 @@ class SidePanelViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        switch indexPath.row {
+        case 0:
+            delegate?.showProfile()
+            break
+        case 1:
+            delegate?.showTimeline()
+            break
+        case 2:
+            delegate?.showMentions()
+            break
+        default:
+            break
+            
+        }
     }
     
     /*
