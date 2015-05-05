@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ContainerViewController: UIViewController {
+class ContainerViewController: UIViewController, SidePanelViewControllerDelegate, UIGestureRecognizerDelegate {
+    
+    var profileViewController: ProfileViewController
+    var timelineViewController: TimelineViewController!
+    var mentionsViewController: MentionsViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
