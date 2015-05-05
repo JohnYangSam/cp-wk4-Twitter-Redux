@@ -29,13 +29,11 @@ class SidePanelViewController: UIViewController, UITableViewDataSource, UITableV
         
         // UITableView automatic dimensions
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 300
+        tableView.estimatedRowHeight = 100
         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.reloadData()
-        
-        self.view.backgroundColor = UIColor.whiteColor();
         
         println("Panel has loaded")
         
@@ -62,7 +60,7 @@ class SidePanelViewController: UIViewController, UITableViewDataSource, UITableV
             cell.menuLabel.text = "Mentions"
             break
         default:
-            cell.menuLabel.text = "Mentions"
+            cell.menuLabel.text = ""
             break
             
         }
@@ -71,19 +69,19 @@ class SidePanelViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         switch indexPath.row {
-        case 0:
+        case 1:
             delegate?.showProfile()
             break
-        case 1:
+        case 2:
             delegate?.showTimeline()
             break
-        case 2:
+        case 3:
             println("show mentions clicked")
             delegate?.showMentions()
             break
