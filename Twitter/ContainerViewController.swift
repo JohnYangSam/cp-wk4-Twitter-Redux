@@ -19,8 +19,7 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
     
     var panelVisible:Bool = false
 
-    @IBOutlet var containerView: UIView!
-    
+    @IBOutlet weak var containerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +42,10 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
         sidePanelViewController.delegate = self
         
         // Insert the side panel into the container
-        view.insertSubview(sidePanelViewController.view, atIndex: 0)
-        addChildViewController(sidePanelViewController)
-        sidePanelViewController.didMoveToParentViewController(self)
+        //view.insertSubview(sidePanelViewController.view, atIndex: 0)
+        //addChildViewController(sidePanelViewController)
+        //view.addSubview(sidePanelViewController.view)
+        //sidePanelViewController.didMoveToParentViewController(self)
         
         // Setup profile
         profileViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
@@ -64,6 +64,8 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
         edgePanGesture.edges = UIRectEdge.Left
         view.addGestureRecognizer(edgePanGesture)
         
+        // Re-add the timeline on top
+        displayViewController(timelineNavController)
     }
 
     override func didReceiveMemoryWarning() {
@@ -115,6 +117,7 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
     
     // Side Panel View Controller Delegate Methods
     func toggleSidePanel() {
+        println("toggle Side Panel called")
         animatePanel(panelVisible)
     }
     

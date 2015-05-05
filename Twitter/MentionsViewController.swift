@@ -49,7 +49,7 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var twc = tableView.dequeueReusableCellWithIdentifier("TweetViewCell", forIndexPath: indexPath) as! TweetViewCell
-        var tweet = tweets[indexPath.row - 1] // because the first one is for the header
+        var tweet = tweets[indexPath.row] // because the first one is for the header
         
         twc.profilePicture.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!))
         twc.screenNameLabel.text = tweet.user?.screenname

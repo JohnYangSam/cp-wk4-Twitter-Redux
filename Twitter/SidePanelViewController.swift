@@ -17,8 +17,8 @@ protocol SidePanelViewControllerDelegate {
 
 class SidePanelViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var tableView: UITableView!
     
     var delegate: SidePanelViewControllerDelegate?
     
