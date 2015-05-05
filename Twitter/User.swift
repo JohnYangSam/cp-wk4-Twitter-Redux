@@ -32,9 +32,9 @@ class User: NSObject {
         profileImageUrl = dictionary["profile_image_url"] as? String
         tagline = dictionary["description"] as? String
         
-        numTweets =  dictionary["statuses_count"] as? String
-        numFollowers = dictionary["followers_count"] as? String
-        numFollowing = dictionary["following"] as? String
+        numTweets =  String(dictionary["statuses_count"] as! Int)
+        numFollowers = String(dictionary["followers_count"] as! Int)
+        numFollowing = String(dictionary["following"] as! Int)
     }
     
     // Special class variable with a getter and setter

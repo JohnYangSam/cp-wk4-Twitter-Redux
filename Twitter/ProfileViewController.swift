@@ -21,13 +21,28 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        self.tableView.reloadData()
+        
+        // UITableView automatic dimensions
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 300
+        
+        var params:NSDictionary = NSDictionary(object: user.screenname!, forKey: "screen_name")
+        
+        TwitterClient.sharedInstance.userTimelineWithParams(params, completion: { (tweets, error) -> () in
+            
+            if tweets != nil {
+                self.tweets = tweets!
+                self.tableView.reloadData()
+            } else {
+                // Handle the error here
+            }
+        })
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,10 +58,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             phc.profileViewImage.setImageWithURL(NSURL(string: user.profileImageUrl!))
             
-            //phc.numTweets.text =
+            phc.numTweets.text = user.numTweets
+            phc.numFollowers.text = user.numFollowers
+            phc.numFollowing.text = user.numFollowing
+            
+            cell = phc
             
         } else {
             var twc = tableView.dequeueReusableCellWithIdentifier("TweetViewCell", forIndexPath: indexPath) as! TweetViewCell
+            
+            var tweet = tweets[indexPath.row - 1] // because the first one is for the header
+            
+            twc.profilePicture.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!))
+            twc.screenNameLabel.text = tweet.user?.screenname
+            twc.nameLabel.text = tweet.user?.name
+            var time = String(format: "%.0f", round(tweet.createdAtDate!.timeIntervalSinceNow / 60 * -1))
+            twc.hoursLabel.text = time + "h"
+            twc.tweetTextLabel.text = tweet.text
+            
+            cell = twc
         }
         return cell
     }
